@@ -1,38 +1,195 @@
-.App {
+:root {
+  margin: 0;
+  background-color: rgb(239, 239, 239);
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.input-divider {
+  width: 98% !important;
+  /* color: black !important; */
+}
+
+.input-divider-selected {
+  background-color: black !important;
+  width: 98% !important;
+}
+
+.student-divider {
+  width: 100% !important;
+}
+
+#main-container {
+  margin: 100px 0;
+  width: 80%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 5px;
+}
+
+#students-info-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+  overflow: scroll;
+  padding: 0 !important;
+  border-radius: 0 0 15px 15px;
+}
+
+#search-bar-name {
+  width: 100% !important;
+  height: 60px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 15px 15px 0 0 !important;
+}
+
+#search-bar-tag {
+  width: 100% !important;
+  height: 60px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#loader {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.student-card-container {
+  width: 100%;
+  background-color: white;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+}
+
+.student-card {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.student-avatar {
+  border: 1px rgb(191, 191, 191) solid;
+  width: 200px !important;
+  height: 200px !important;
+  margin: 20px;
+}
+.student-avatar-filler {
+  width: 200px !important;
+  height: 200px !important;
+  margin: 20px;
+}
+
+.student-info-container {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-left: 40px;
 }
 
-.App-link {
-  color: #61dafb;
+.student-title {
+  font-weight: 600 !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.student-info {
+  padding-left: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.grades-container {
+  display: flex;
+  width: 100%;
+}
+
+.student-dropdown-icon-container {
+  display: flex;
+  flex-grow: 1;
+  height: 200px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.dropdown-icon {
+  color: rgb(155, 155, 155) !important;
+  height: 65px !important;
+  width: 65px !important;
+}
+
+.info-text {
+  font-weight: 300 !important;
+  font-size: 20px !important;
+}
+
+.search-input {
+  font-size: 20px !important;
+  height: 60px;
+}
+
+.add-tag-input {
+  font-size: 20px !important;
+  height: 60px;
+  width: 200px;
+  border-bottom: solid 1px rgb(211, 211, 211) !important;
+  margin-bottom: 20px;
+  margin-left: 325px;
+}
+
+.add-tag-input.Mui-focused {
+  border-bottom: solid 1px black !important;
+}
+
+/* .Mui-focused {
+  border-bottom: solid 1px rgb(1, 1, 1) !important;
+} */
+
+.tag-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  /* padding-left: 200px; */
+}
+
+.tag-box {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  background-color: rgb(225, 225, 225);
+  justify-content: center;
+  margin: 2px;
+}
+
+.tag-list-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 325px;
 }
