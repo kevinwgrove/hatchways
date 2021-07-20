@@ -63,9 +63,6 @@ export const studentListItem = (
     const tagContainer = document.getElementById(
       `student-${pos}-tag-container`
     );
-    // if (gradesContainer) {
-    //     gradesContainer.remove()
-    // }
     let mainDiv = document.createElement("div");
     mainDiv.className = "grades-container";
     mainDiv.style.marginBottom = "20px";
@@ -84,6 +81,7 @@ export const studentListItem = (
         "MuiTypography-root info-text raleway MuiTypography-body1";
       text.innerHTML = `Test ${pos + 1}: ${grade}%`;
       studentInfo.appendChild(text);
+      return
     });
     studentInfoContainer.appendChild(studentInfo);
     mainDiv.appendChild(studentInfoContainer);

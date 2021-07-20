@@ -107,11 +107,13 @@ function App() {
         return filterStudents(student, name, names, regName);
       });
       const newRes = res.filter((student) => {
+        let studentTags = []
         for (let i = 0; i < student.tags.length; i++) {
           if (student.tags[i].startsWith(tag)) {
-            return student;
+            studentTags.push(student)
           }
         }
+        return studentTags
       });
       return newRes.map((s) => {
         let grades = s.grades.map((i) => parseInt(i));
