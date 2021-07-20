@@ -52,6 +52,7 @@ function App() {
   const [searchTag, setSearchTag] = useState('')
   const [valueAddTag, setValueAddTag] = useState('')
   const [targetNode, setTargetNode] = useState(null)
+  const [toggledGrades, setToggledGrades] = useState([])
   const [tagsList, setTagsList] = useState([])
   const url = "https://api.hatchways.io/assessment/students"
 
@@ -60,7 +61,7 @@ function App() {
     // then sets the mutated list as the students state
     let response = await fetchUrl(url)
     let newList = await response.students.map(
-      (s) => ({...s, tags: []})
+      (s) => ({...s, tags: [], gradesToggled: false})
     )
     setStudents(newList)
   }, [])
@@ -68,24 +69,29 @@ function App() {
   useEffect(() => {
     // this useEffect is listening to changes on valueAddTag and rerenders upon any changes to its state
   }, [valueAddTag])
+
+  useEffect(() => {
+
+  }, [toggledGrades])
   
   const buildStudentsList = (name, tag) => {
     // function listens to the search by name and search by tag inputs
     // it builds a list according to the search criteria
     // then calls the studentListItem function to build a component based on individual student's data
+    let names = name.split(' ')
     if (name === '' && tag === '') {
       return ( 
         students.map((s) => {
           let grades = s.grades.map((i) => parseInt(i))
           let gradeAvg = grades.reduce((a,b) => a + b, 0) / grades.length
           let pos = students.indexOf(s) + 1
-              return studentListItem(s, gradeAvg, targetNode, setTargetNode, pos, valueAddTag, setValueAddTag, tagsList, setTagsList)
+              return studentListItem(s, gradeAvg, targetNode, setTargetNode, pos, valueAddTag, setValueAddTag, tagsList, setTagsList, toggledGrades, setToggledGrades)
             }
           )
       )
     } else if (name !== '' && tag !== '') {
       const res = students.filter(student => {
-        if (student.firstName.toLowerCase().startsWith(name) || student.lastName.toLowerCase().startsWith(name)) {
+        if (student.firstName.toLowerCase().startsWith(names[0]) || student.firstName.toLowerCase().startsWith(names[1]) || student.lastName.toLowerCase().startsWith(names[0]) || student.lastName.toLowerCase().startsWith(names[1])) {
           return student
         } 
       })
@@ -100,11 +106,11 @@ function App() {
         let grades = s.grades.map((i) => parseInt(i))
         let gradeAvg = grades.reduce((a,b) => a + b, 0) / grades.length
         let pos = students.indexOf(s) + 1
-        return studentListItem(s, gradeAvg, targetNode, setTargetNode, pos, valueAddTag, setValueAddTag, tagsList, setTagsList)
+        return studentListItem(s, gradeAvg, targetNode, setTargetNode, pos, valueAddTag, setValueAddTag, tagsList, setTagsList, toggledGrades, setToggledGrades)
       })
     } else if (name !== '') {
         const res = students.filter(student => {
-          if (student.firstName.toLowerCase().startsWith(name) || student.lastName.toLowerCase().startsWith(name)) {
+          if (student.firstName.toLowerCase().startsWith(names[0]) || student.firstName.toLowerCase().startsWith(names[1]) || student.lastName.toLowerCase().startsWith(names[0]) || student.lastName.toLowerCase().startsWith(names[1])) {
             return student
           } 
         })
@@ -112,7 +118,7 @@ function App() {
           let grades = s.grades.map((i) => parseInt(i))
           let gradeAvg = grades.reduce((a,b) => a + b, 0) / grades.length
           let pos = students.indexOf(s) + 1
-          return studentListItem(s, gradeAvg, targetNode, setTargetNode, pos, valueAddTag, setValueAddTag, tagsList, setTagsList)
+          return studentListItem(s, gradeAvg, targetNode, setTargetNode, pos, valueAddTag, setValueAddTag, tagsList, setTagsList, toggledGrades, setToggledGrades)
         })
     } else if (tag !== '') {
         const res = students.filter(student => {
@@ -126,7 +132,7 @@ function App() {
           let grades = s.grades.map((i) => parseInt(i))
           let gradeAvg = grades.reduce((a,b) => a + b, 0) / grades.length
           let pos = students.indexOf(s) + 1
-              return studentListItem(s, gradeAvg, targetNode, setTargetNode, pos, valueAddTag, setValueAddTag, tagsList, setTagsList)
+              return studentListItem(s, gradeAvg, targetNode, setTargetNode, pos, valueAddTag, setValueAddTag, tagsList, setTagsList, toggledGrades, setToggledGrades)
         })
     }
   }

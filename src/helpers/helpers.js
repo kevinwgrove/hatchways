@@ -29,17 +29,17 @@ export const triggerDivider = (e) => {
     return
 }
 
-export const studentListItem = (s, gradeAvg, targetNode, setTargetNode, pos, valueAddTag, setValueAddTag, tagsList, setTagsList) => {
+export const studentListItem = (s, gradeAvg, targetNode, setTargetNode, pos, valueAddTag, setValueAddTag, tagsList, setTagsList, toggledGrades, setToggledGrades) => {
     // function builds and returns a list item component depending on individual student's data
-    const gradesContainer = document.querySelector('.grades-container')
+    // const gradesContainer = document.querySelector('.grades-container')
     
     const toggleGrades = (s, node) => {
         // function builds the student's individual grades list
         // inserts it to the appropriate position on the student's list item component
         const tagContainer = document.getElementById(`student-${pos}-tag-container`)
-        if (gradesContainer) {
-            gradesContainer.remove()
-        }
+        // if (gradesContainer) {
+        //     gradesContainer.remove()
+        // }
         let mainDiv = document.createElement('div')
         mainDiv.className = 'grades-container'
         mainDiv.style.marginBottom = '20px'
@@ -67,92 +67,99 @@ export const studentListItem = (s, gradeAvg, targetNode, setTargetNode, pos, val
 
     }
 
+    const hideGrades = (node) => {
+        node.children[1].remove()
+        return
+    } 
+
     const renderIcon = (pos, targetNode) => {
         // function returns a different icon depending on if the dropdown grades toggle was clicked
         let node = document.getElementById(`student-${pos}`)
-        if (node !== null) {
-            if (node.children[1] === gradesContainer) {
-                return (
-                    <>
-                        <IconButton
-                        size="small"
-                        style={{
-                            backgroundColor: "white"
-                        }}
-                        onClick={
-                            () => {
-                                setTargetNode(null)
-                                gradesContainer.remove()
-                            }
-                        }
-                        >
-                            <Remove 
-                            className="dropdown-icon"
-                            onClick={
-                                (e) => {
-                                    setTargetNode(null)
-                                    gradesContainer.remove()                            }
-                            }
-                            />
-                        </IconButton>
-                    </>
-                )
-            } else if (targetNode === null || targetNode !== node) {
-                return (
-                    <>
-                        <IconButton
-                        size="small"
-                        style={{
-                            backgroundColor: "white"
-                        }}
-                        onClick={
-                            (e) => {
-                                setTargetNode(e.target.parentNode.parentNode.parentNode.parentNode.parentNode)
-                                toggleGrades(s, e.target.parentNode.parentNode.parentNode.parentNode.parentNode)
-                            }
-                        }
-                        >
-                            <Add 
-                            className="dropdown-icon"
-                            onClick={
-                                (e) => {
-                                    setTargetNode(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
-                                    toggleGrades(s, e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
-                                }
-                            }
-                            />
-                        </IconButton>
-                    </>
-                )
-            }
-        } else {
-            return (
-                <>
-                    <IconButton
-                    size="small"
-                    style={{
-                        backgroundColor: "white"
-                    }}
-                    onClick={
-                        (e) => {
-                            setTargetNode(e.target.parentNode.parentNode.parentNode.parentNode.parentNode)
-                            toggleGrades(s, e.target.parentNode.parentNode.parentNode.parentNode.parentNode)
-                        }
-                    }
-                    >
-                        <Add 
-                        className="dropdown-icon"
-                        onClick={
-                            (e) => {
-                                setTargetNode(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
-                                toggleGrades(s, e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
-                            }
-                        }
-                        />
-                    </IconButton>
-                </>
-            )
-        }
+        
+        
+        // if (node !== null) {
+        //     if (node.children[1] === gradesContainer) {
+        //         return (
+        //             <>
+        //                 <IconButton
+        //                 size="small"
+        //                 style={{
+        //                     backgroundColor: "white"
+        //                 }}
+        //                 onClick={
+        //                     () => {
+        //                         setTargetNode(null)
+        //                         gradesContainer.remove()
+        //                     }
+        //                 }
+        //                 >
+        //                     <Remove 
+        //                     className="dropdown-icon"
+        //                     onClick={
+        //                         (e) => {
+        //                             setTargetNode(null)
+        //                             gradesContainer.remove()                            }
+        //                     }
+        //                     />
+        //                 </IconButton>
+        //             </>
+        //         )
+        //     } else if (targetNode === null || targetNode !== node) {
+        //         return (
+        //             <>
+        //                 <IconButton
+        //                 size="small"
+        //                 style={{
+        //                     backgroundColor: "white"
+        //                 }}
+        //                 onClick={
+        //                     (e) => {
+        //                         setTargetNode(e.target.parentNode.parentNode.parentNode.parentNode.parentNode)
+        //                         toggleGrades(s, e.target.parentNode.parentNode.parentNode.parentNode.parentNode)
+        //                     }
+        //                 }
+        //                 >
+        //                     <Add 
+        //                     className="dropdown-icon"
+        //                     onClick={
+        //                         (e) => {
+        //                             setTargetNode(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
+        //                             toggleGrades(s, e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
+        //                         }
+        //                     }
+        //                     />
+        //                 </IconButton>
+        //             </>
+        //         )
+        //     }
+        // } else {
+        //     return (
+        //         <>
+        //             <IconButton
+        //             size="small"
+        //             style={{
+        //                 backgroundColor: "white"
+        //             }}
+        //             onClick={
+        //                 (e) => {
+        //                     setTargetNode(e.target.parentNode.parentNode.parentNode.parentNode.parentNode)
+        //                     toggleGrades(s, e.target.parentNode.parentNode.parentNode.parentNode.parentNode)
+        //                 }
+        //             }
+        //             >
+        //                 <Add 
+        //                 className="dropdown-icon"
+        //                 onClick={
+        //                     (e) => {
+        //                         setTargetNode(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
+        //                         toggleGrades(s, e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
+        //                     }
+        //                 }
+        //                 />
+        //             </IconButton>
+        //         </>
+        //     )
+        // }
     }
 
     return (
@@ -160,6 +167,7 @@ export const studentListItem = (s, gradeAvg, targetNode, setTargetNode, pos, val
             <div
             className='student-card-container'
             id={`student-${pos}`}
+            key={pos}
             >
                 <ListItem
                 className='student-card'
@@ -210,7 +218,53 @@ export const studentListItem = (s, gradeAvg, targetNode, setTargetNode, pos, val
                     className="student-dropdown-icon-container"
                     >
                        {
-                           renderIcon(pos, targetNode)
+                           s.gradesToggled ?
+                            <>
+                                <IconButton
+                                size="small"
+                                style={{
+                                    backgroundColor: "white"
+                                }}
+                                >
+                                    <Remove 
+                                    className="dropdown-icon"
+                                    onClick={
+                                        (e) => {
+                                            s.gradesToggled = !s.gradesToggled
+                                            setTargetNode(document.getElementById(`student-${pos}`))
+                                            document.getElementById(`student-${pos}`).children[1].remove()
+                                            console.log(s.gradesToggled)
+                                            setToggledGrades(toggledGrades.filter(tg => tg !== pos))
+                                            e.stopPropagation()  
+                                        }
+                                    }
+                                    />
+                                </IconButton>
+                            </>
+                            :
+                            <>
+                                <IconButton
+                                size="small"
+                                style={{
+                                    backgroundColor: "white"
+                                }}
+                                >
+                                    <Add 
+                                    className="dropdown-icon"
+                                    onClick={
+                                        (e) => {
+                                            setTargetNode(document.getElementById(`student-${pos}`))
+                                            toggleGrades(s, document.getElementById(`student-${pos}`))
+                                            s.gradesToggled = !s.gradesToggled
+                                            console.log(s.gradesToggled)
+                                            console.log(document.getElementById(`student-${pos}`))
+                                            setToggledGrades([...toggledGrades, pos])
+                                            e.stopPropagation()
+                                        }
+                                    }
+                                    />
+                                </IconButton>
+                            </>
                        }
                     </div>
                 </ListItem>
