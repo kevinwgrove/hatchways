@@ -1,6 +1,11 @@
 import { ScaleLoader } from "react-spinners";
 import "./App.css";
-import { fetchUrl, studentListItem, triggerDivider, filterStudents } from "./helpers/helpers";
+import {
+  fetchUrl,
+  studentListItem,
+  triggerDivider,
+  filterStudents,
+} from "./helpers/helpers";
 import { useEffect, useState } from "react";
 import { InputBase, makeStyles, fade, Divider, List } from "@material-ui/core";
 
@@ -49,17 +54,20 @@ function App() {
   const [tagsList, setTagsList] = useState([]);
   const url = "https://api.hatchways.io/assessment/students";
 
-  useEffect(async () => {
+  useEffect(() => {
     // fetches student data and adds a tag key with an empty array value
     // then sets the mutated list as the students state
-    let response = await fetchUrl(url);
-    let newList = await response.students.map((s) => ({
-      ...s,
-      tags: [],
-      gradesToggled: false,
-      fullName: `${s.firstName} ${s.lastName}`
-    }));
-    setStudents(newList);
+    async function fetchData(url) {
+      let response = await fetchUrl(url);
+      let newList = await response.students.map((s) => ({
+        ...s,
+        tags: [],
+        gradesToggled: false,
+        fullName: `${s.firstName} ${s.lastName}`,
+      }));
+      setStudents(newList);
+    }
+    fetchData(url);
   }, []);
 
   useEffect(() => {
@@ -92,11 +100,11 @@ function App() {
         );
       });
     } else if (name !== "" && tag !== "") {
-      name = name.toLowerCase()
+      name = name.toLowerCase();
       let names = name.split(" ");
-      let regName = /^[a-zA-Z]+ [a-zA-Z]+$/
+      let regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
       const res = students.filter((student) => {
-        return filterStudents(student, name, names, regName)
+        return filterStudents(student, name, names, regName);
       });
       const newRes = res.filter((student) => {
         for (let i = 0; i < student.tags.length; i++) {
@@ -124,11 +132,11 @@ function App() {
         );
       });
     } else if (name !== "") {
-      name = name.toLowerCase()
+      name = name.toLowerCase();
       let names = name.split(" ");
-      let regName = /^[a-zA-Z]+ [a-zA-Z]+$/
+      let regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
       const res = students.filter((student) => {
-        return filterStudents(student, name, names, regName)
+        return filterStudents(student, name, names, regName);
       });
       return res.map((s) => {
         let grades = s.grades.map((i) => parseInt(i));

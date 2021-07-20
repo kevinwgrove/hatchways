@@ -16,17 +16,17 @@ export const fetchUrl = async (url) => {
 };
 
 export const filterStudents = (student, name, names, regName) => {
-    if (regName.test(name)) {
-        if (student.fullName.toLowerCase().startsWith(name)) {
-            return student
-        }
-    } else if (
+  if (regName.test(name)) {
+    if (student.fullName.toLowerCase().startsWith(name)) {
+      return student;
+    }
+  } else if (
     student.firstName.toLowerCase().startsWith(names[0]) ||
     student.lastName.toLowerCase().startsWith(names[0])
-    ) {
+  ) {
     return student;
-    }
-}
+  }
+};
 
 export const triggerDivider = (e) => {
   // this changes the divider background color below the search input
@@ -93,100 +93,6 @@ export const studentListItem = (
     return;
   };
 
-  const hideGrades = (node) => {
-    node.children[1].remove();
-    return;
-  };
-
-  const renderIcon = (pos, targetNode) => {
-    // function returns a different icon depending on if the dropdown grades toggle was clicked
-    let node = document.getElementById(`student-${pos}`);
-
-    // if (node !== null) {
-    //     if (node.children[1] === gradesContainer) {
-    //         return (
-    //             <>
-    //                 <IconButton
-    //                 size="small"
-    //                 style={{
-    //                     backgroundColor: "white"
-    //                 }}
-    //                 onClick={
-    //                     () => {
-    //                         setTargetNode(null)
-    //                         gradesContainer.remove()
-    //                     }
-    //                 }
-    //                 >
-    //                     <Remove
-    //                     className="dropdown-icon"
-    //                     onClick={
-    //                         (e) => {
-    //                             setTargetNode(null)
-    //                             gradesContainer.remove()                            }
-    //                     }
-    //                     />
-    //                 </IconButton>
-    //             </>
-    //         )
-    //     } else if (targetNode === null || targetNode !== node) {
-    //         return (
-    //             <>
-    //                 <IconButton
-    //                 size="small"
-    //                 style={{
-    //                     backgroundColor: "white"
-    //                 }}
-    //                 onClick={
-    //                     (e) => {
-    //                         setTargetNode(e.target.parentNode.parentNode.parentNode.parentNode.parentNode)
-    //                         toggleGrades(s, e.target.parentNode.parentNode.parentNode.parentNode.parentNode)
-    //                     }
-    //                 }
-    //                 >
-    //                     <Add
-    //                     className="dropdown-icon"
-    //                     onClick={
-    //                         (e) => {
-    //                             setTargetNode(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
-    //                             toggleGrades(s, e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
-    //                         }
-    //                     }
-    //                     />
-    //                 </IconButton>
-    //             </>
-    //         )
-    //     }
-    // } else {
-    //     return (
-    //         <>
-    //             <IconButton
-    //             size="small"
-    //             style={{
-    //                 backgroundColor: "white"
-    //             }}
-    //             onClick={
-    //                 (e) => {
-    //                     setTargetNode(e.target.parentNode.parentNode.parentNode.parentNode.parentNode)
-    //                     toggleGrades(s, e.target.parentNode.parentNode.parentNode.parentNode.parentNode)
-    //                 }
-    //             }
-    //             >
-    //                 <Add
-    //                 className="dropdown-icon"
-    //                 onClick={
-    //                     (e) => {
-    //                         setTargetNode(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
-    //                         toggleGrades(s, e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode)
-    //                     }
-    //                 }
-    //                 />
-    //             </IconButton>
-    //         </>
-    //     )
-    // }
-  };
-
   return (
     <>
       <div className="student-card-container" id={`student-${pos}`} key={pos}>
@@ -231,15 +137,11 @@ export const studentListItem = (
                       .getElementById(`student-${pos}`)
                       .children[1].remove();
                     console.log(s.gradesToggled);
-                    setToggledGrades(
-                      toggledGrades.filter((tg) => tg !== pos)
-                    );
+                    setToggledGrades(toggledGrades.filter((tg) => tg !== pos));
                     e.stopPropagation();
                   }}
                 >
-                  <Remove
-                    className="dropdown-icon"
-                  />
+                  <Remove className="dropdown-icon" />
                 </IconButton>
               </>
             ) : (
@@ -251,10 +153,7 @@ export const studentListItem = (
                   }}
                   onClick={(e) => {
                     setTargetNode(document.getElementById(`student-${pos}`));
-                    toggleGrades(
-                      s,
-                      document.getElementById(`student-${pos}`)
-                    );
+                    toggleGrades(s, document.getElementById(`student-${pos}`));
                     s.gradesToggled = !s.gradesToggled;
                     console.log(s.gradesToggled);
                     console.log(document.getElementById(`student-${pos}`));
@@ -262,9 +161,7 @@ export const studentListItem = (
                     e.stopPropagation();
                   }}
                 >
-                  <Add
-                    className="dropdown-icon"
-                  />
+                  <Add className="dropdown-icon" />
                 </IconButton>
               </>
             )}
