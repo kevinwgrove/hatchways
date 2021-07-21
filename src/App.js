@@ -82,10 +82,12 @@ function App() {
     // then calls the studentListItem function to build a component based on individual student's data
     if (name === "" && tag === "") {
       return students.map((s) => {
-        let grades = s.grades.map((i) => parseInt(i));
+        let grades = s.grades.map((i) => {
+          return parseInt(i);
+        });
         let gradeAvg = grades.reduce((a, b) => a + b, 0) / grades.length;
         let pos = students.indexOf(s) + 1;
-        return studentListItem(
+        let studentNode = studentListItem(
           s,
           gradeAvg,
           targetNode,
@@ -98,6 +100,7 @@ function App() {
           toggledGrades,
           setToggledGrades
         );
+        return studentNode
       });
     } else if (name !== "" && tag !== "") {
       name = name.toLowerCase();
@@ -107,16 +110,18 @@ function App() {
         return filterStudents(student, name, names, regName);
       });
       const newRes = res.filter((student) => {
-        let studentTags = []
+        let studentTags = [];
         for (let i = 0; i < student.tags.length; i++) {
           if (student.tags[i].startsWith(tag)) {
-            studentTags.push(student)
+            studentTags.push(student);
           }
         }
-        return studentTags
+        return studentTags;
       });
       return newRes.map((s) => {
-        let grades = s.grades.map((i) => parseInt(i));
+        let grades = s.grades.map((i) => {
+          return parseInt(i);
+        });
         let gradeAvg = grades.reduce((a, b) => a + b, 0) / grades.length;
         let pos = students.indexOf(s) + 1;
         return studentListItem(
@@ -141,7 +146,9 @@ function App() {
         return filterStudents(student, name, names, regName);
       });
       return res.map((s) => {
-        let grades = s.grades.map((i) => parseInt(i));
+        let grades = s.grades.map((i) => {
+          return parseInt(i);
+        });
         let gradeAvg = grades.reduce((a, b) => a + b, 0) / grades.length;
         let pos = students.indexOf(s) + 1;
         return studentListItem(
@@ -160,14 +167,18 @@ function App() {
       });
     } else if (tag !== "") {
       const res = students.filter((student) => {
+        let studentTags = [];
         for (let i = 0; i < student.tags.length; i++) {
           if (student.tags[i].startsWith(tag)) {
-            return student;
+            studentTags.push(student);
           }
         }
+        return studentTags;
       });
       return res.map((s) => {
-        let grades = s.grades.map((i) => parseInt(i));
+        let grades = s.grades.map((i) => {
+          return parseInt(i);
+        });
         let gradeAvg = grades.reduce((a, b) => a + b, 0) / grades.length;
         let pos = students.indexOf(s) + 1;
         return studentListItem(
