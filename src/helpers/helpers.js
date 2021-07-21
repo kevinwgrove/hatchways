@@ -134,7 +134,6 @@ export const studentListItem = (
                     document
                       .getElementById(`student-${pos}`)
                       .children[1].remove();
-                    console.log(s.gradesToggled);
                     setToggledGrades(toggledGrades.filter((tg) => tg !== pos));
                     e.stopPropagation();
                   }}
@@ -153,8 +152,6 @@ export const studentListItem = (
                     setTargetNode(document.getElementById(`student-${pos}`));
                     toggleGrades(s, document.getElementById(`student-${pos}`));
                     s.gradesToggled = !s.gradesToggled;
-                    console.log(s.gradesToggled);
-                    console.log(document.getElementById(`student-${pos}`));
                     setToggledGrades([...toggledGrades, pos]);
                     e.stopPropagation();
                   }}

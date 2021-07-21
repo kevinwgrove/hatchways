@@ -80,6 +80,7 @@ function App() {
     // function listens to the search by name and search by tag inputs
     // it builds a list according to the search criteria
     // then calls the studentListItem function to build a component based on individual student's data
+    console.log(students)
     if (name === "" && tag === "") {
       return students.map((s) => {
         let grades = s.grades.map((i) => {
