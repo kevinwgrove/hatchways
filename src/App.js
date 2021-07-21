@@ -87,7 +87,7 @@ function App() {
         });
         let gradeAvg = grades.reduce((a, b) => a + b, 0) / grades.length;
         let pos = students.indexOf(s) + 1;
-        let studentNode = studentListItem(
+        return studentListItem(
           s,
           gradeAvg,
           targetNode,
@@ -100,7 +100,6 @@ function App() {
           toggledGrades,
           setToggledGrades
         );
-        return studentNode
       });
     } else if (name !== "" && tag !== "") {
       name = name.toLowerCase();
@@ -167,13 +166,13 @@ function App() {
       });
     } else if (tag !== "") {
       const res = students.filter((student) => {
-        let studentTags = [];
+        let tagSearch = null
         for (let i = 0; i < student.tags.length; i++) {
           if (student.tags[i].startsWith(tag)) {
-            studentTags.push(student);
+            tagSearch = student;
           }
         }
-        return studentTags;
+        return tagSearch
       });
       return res.map((s) => {
         let grades = s.grades.map((i) => {

@@ -81,7 +81,7 @@ export const studentListItem = (
         "MuiTypography-root info-text raleway MuiTypography-body1";
       text.innerHTML = `Test ${pos + 1}: ${grade}%`;
       studentInfo.appendChild(text);
-      return
+      return grade
     });
     studentInfoContainer.appendChild(studentInfo);
     mainDiv.appendChild(studentInfoContainer);
